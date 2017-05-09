@@ -1,0 +1,69 @@
+<div class="jumbotron">
+  <h1>Get Yo Burgers</h1>
+  <p>Let's eat!</p>
+
+<form method ="POST" action "/" class="button-size">
+	<div class="row">
+	  <div class="col-lg-6">
+	    <div class="input-group">
+	      <input name="addburger" type="text" class="form-control" placeholder="Add a burger to eat!">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="submit">Add!</button>
+	      </span>
+	    </div><!-- /input-group -->
+	  </div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
+	</div>
+</form>
+
+
+<div class = "row">
+
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">Burgers To Be Eaten</div>
+
+		  <!-- List group -->
+		  <ul class="list-group">
+		  	{{#each burger}}
+		  	{{#unless devoured}}
+
+			<li class="list-group-item"> 
+
+			<form style = "display: inline" action="/{{this.id}}?_method=PUT" method="POST">
+			<button type="submit" class= "btn btn-default" name={{this.id}}>Devour it!</button>
+			</form>
+
+			{{this.burger_name}}
+
+			</li>
+
+		  	{{/unless}}
+		  	{{/each}}
+		  </ul>
+		</div>
+	</div>
+
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">Burgers In Your Stomach</div>
+
+
+		  <!-- List group -->
+		  <ul class="list-group">
+		  	{{#each burger}}
+		  	{{#if devoured}}
+
+			<li class="list-group-item"> 
+				{{this.burger_name}}
+			</li>
+
+		  	{{/if}}
+		  	{{/each}}
+		  </ul>
+		</div>
+	</div>
+	
+</div>
