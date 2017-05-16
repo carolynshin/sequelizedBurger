@@ -6,14 +6,15 @@ var burger = require('../models/burger.js');
 //create router for app and export router at end of your file
 var router = express.Router();
 
+var db = require('../models');
+
 //define homepage route
 router.get('/', function(request, response){
-
-	burger.all(function(result){
+	db.Burger.findAll({}).then(function(result){
 
 		var burger = {
-			burger : result
-		}
+			burger:result
+		};
 
 		response.render('index', burger);
 
@@ -24,45 +25,28 @@ router.get('/', function(request, response){
 //post method route
 router.post('/', function(request, response){
 
-	burger.insert(request.body.addburger, function(result){
-
-		burger.all(function(data){
-			var burger = {
-				burger: data
-			}
-
-			response.render('index', burger);
-		})
-
+	db.Burger.create({
+		burger_name: request.body.addburger,
+		devoured: false
+	}).then(function(result){
+		response.redirect('/');
 	});
-
 });
 
 
-
-
-
+//update 
 
 router.put('/:id', function(request, response){
 
-	burger.update(request.params.id, function(result){
-		burger.all(function(data){
-			var burger = {
-				burger: data
-			}
-
-			// response.render('index', burger);
-			response.redirect("/");
-		})
+	db.Burger.update({
+		devoured: true
+	}, {
+		where: {
+			id: request.params.id
+		}
+	}).then(function(result){
+		response.redirect('/');
 	})
-
-
 });
-
-
-
-
-
-
 
 module.exports = router;

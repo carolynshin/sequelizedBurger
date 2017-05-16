@@ -1,0 +1,26 @@
+{
+  "name": "sequelizedburger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carolynshin/sequelizedBurger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carolynshin/sequelizedBurger/issues"
+  },
+  "homepage": "https://github.com/carolynshin/sequelizedBurger#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "method-override": "^2.3.8",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4"
+  }
+}
